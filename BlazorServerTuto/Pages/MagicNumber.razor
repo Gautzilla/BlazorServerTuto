@@ -1,0 +1,29 @@
+@page "/MagicNumber"
+@inherits MagicNumberBase
+
+<h1>Magic Number Game</h1>
+
+@if(gameWon.HasValue)
+{
+    if (gameWon.Value)
+    {
+        <h2>You win! 👏</h2>
+    } else
+    {
+        <h2>You loose! 👎</h2>
+    }
+    <button class="btn-primary" @onclick="() => ReinitGame()">Rejouer</button>
+} else
+{
+    <div>
+    <h4>Guess the number between @borderMin and @borderMax:</h4>
+    <input type="number" @bind="guess"> 
+    <button class="btn btn-primary" @onclick="() => TestGuess()">Tester</button>
+    </div>
+    <div>
+        @for(int i = 0; i < nbRemainingLives; i++)
+        {
+            <span>❤️</span>
+        }
+    </div>
+}
